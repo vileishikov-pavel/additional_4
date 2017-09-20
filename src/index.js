@@ -6,7 +6,7 @@ module.exports = function multiply(first, second) {
   }
 
   for (var i = 0, len = first.length; i < len; i++) {
-    result = simpleMultiply( second, parseInt(first.pop()) ) + repeatZeros(i);
+    result = simpleMultiply( second, parseInt(first[len - 1 - i]) ) + repeatZeros(i);
 
     results.push(result);
   }
@@ -20,7 +20,7 @@ function simpleMultiply (num, factor) {
   var result = '', midRes = 0, mem = 0;
 
   for (var i = 0, len = num.length; i < len; i++) {
-    midRes = +num.pop() + mem;
+    midRes = +num[len - 1 - i] * factor + mem;
 
     if (midRes > 9) {
       mem = Math.floor(midRes / 10);
@@ -46,8 +46,8 @@ function sum(num1, num2) {
     num1 = repeatZeros(len2 - len1) + num1;
   }
 
-  for (var i = 0; i < len1; i++) {
-    sum = +num1.splice(-1) + +num2.splice(-1) + mem;
+  for (var i = 0, len = num1.length; i < len; i++) {
+    sum = +num1[len - 1 - i] + +num2[len - 1 - i] + mem;
 
     if (sum > 9) {
       mem = 1; sum = sum - 10;
